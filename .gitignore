@@ -1,0 +1,38 @@
+####################
+# Android
+####################
+*.apk
+*.aab
+*.ap_
+bin/
+gen/
+out/
+local.properties
+.idea/
+*.iml
+.gradle/
+build/
+*/build/
+obj/
+*.jks
+*.keystore
+
+####################
+# Java / Spring Boot
+####################
+*.class
+target/
+logs/
+*.log
+.gradle/
+build/
+.idea/
+*.classpath
+*.project
+*.settings/
+
+####################
+# Common
+####################
+.DS_Store
+Thumbs.db
