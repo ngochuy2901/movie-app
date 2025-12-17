@@ -110,7 +110,7 @@ fun ShortVideoScreen(
             CommentBottom(
                 listComments = comments,
                 commentUsers = commentUsers,
-                imgUrlHeadPoint = imgUrl,
+                imgUrlImageForUserComment = imgUrl,
                 viewModel = viewModel,
                 videoId = currentVideoId!!,
                 url = imgUrl + userAvatarUrl
@@ -124,7 +124,14 @@ fun ShortVideoScreen(
     ) { page ->        // <-- page only valid here
         val fileName = videos.getOrNull(page)?.url ?: return@VerticalPager
         val videoUrl = imgUrlHeadPoint.trimEnd('/') + "/video/play_video/" + fileName
-        viewModel.loadReaction(videos.getOrNull(page)?.id ?: return@VerticalPager)
+        val currentPage by remember {
+            derivedStateOf { pagerState.currentPage }
+        }
+
+        LaunchedEffect(currentPage) {
+            val videoId = videos.getOrNull(currentPage)?.id ?: return@LaunchedEffect
+            viewModel.loadReaction(videoId)
+        }
         val videoId = videos.getOrNull(page)?.id
         Box(
             modifier = Modifier
@@ -272,13 +279,15 @@ fun CommentBottom(
     listComments: List<Comment>,
     commentUsers: Map<Long, UserDto>,
 //    token: String,
-    imgUrlHeadPoint: String,
+    imgUrlImageForUserComment: String,
     viewModel: ShortVideoViewModel,
     videoId: Long,
     url: String
 ) {
     Log.d("Url user comment", url)
-    viewModel.loadUsersForComments(listComments)
+    LaunchedEffect(listComments) {
+        viewModel.loadUsersForComments(listComments)
+    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -305,12 +314,16 @@ fun CommentBottom(
                 ) {
                     AsyncImage(
                         model = ImageRequest.Builder(LocalContext.current)
-                            .data(imgUrlHeadPoint + (user?.imgUrl ?: ""))
+                            .data((imgUrlImageForUserComment + user?.imgUrl))
                             .crossfade(true)
                             .build(),
                         contentDescription = null,
+                        placeholder = painterResource(R.drawable.icon_person),
+                        error = painterResource(R.drawable.icon_person),
                         modifier = Modifier.clip(CircleShape)
                     )
+                    Log.d("Test imgUrl comment is null?", user?.imgUrl?: "Error")
+                    Log.d("Test user comment is null?", user.toString())
                     Spacer(Modifier.size(8.dp))
                     Column {
                         Text(user?.fullName ?: "Unknown user")

@@ -42,47 +42,6 @@ public class VideoController {
         return ResponseEntity.ok(videoService.getAllVideos());
     }
 
-
-//    //stream video theo file name
-//    @GetMapping("/play_video/{fileName}")
-//    public ResponseEntity<Resource> getVideo(
-//            @PathVariable String fileName,
-//            @RequestHeader(value = "Range", required = false) String rangeHeader
-//    ) throws IOException {
-//        FileSystemResource videoFile = new FileSystemResource(VIDEO_DIR + "/" + fileName);
-//        if (!videoFile.exists()) return ResponseEntity.notFound().build();
-//
-//        long fileLength = videoFile.contentLength();
-//        long rangeStart = 0, rangeEnd = fileLength - 1;
-//
-//        if (rangeHeader != null && rangeHeader.startsWith("bytes=")) {
-//            String[] ranges = rangeHeader.substring(6).split("-");
-//            try {
-//                rangeStart = Long.parseLong(ranges[0]);
-//                if (ranges.length > 1) rangeEnd = Long.parseLong(ranges[1]);
-//            } catch (NumberFormatException ignored) {
-//            }
-//        }
-//
-//        long contentLength = rangeEnd - rangeStart + 1;
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setContentType(MediaTypeFactory.getMediaType(fileName)
-//                .orElse(MediaType.APPLICATION_OCTET_STREAM));
-//        headers.set(HttpHeaders.ACCEPT_RANGES, "bytes");
-//        headers.set(HttpHeaders.CONTENT_LENGTH, String.valueOf(contentLength));
-//        headers.set(HttpHeaders.CONTENT_RANGE, "bytes " + rangeStart + "-" + rangeEnd + "/" + fileLength);
-//
-//        InputStreamResource resource = new InputStreamResource(videoFile.getInputStream()) {
-//            @Override
-//            public long contentLength() {
-//                return contentLength;
-//            }
-//        };
-//
-//        return ResponseEntity.status(rangeHeader == null ? HttpStatus.OK : HttpStatus.PARTIAL_CONTENT)
-//                .headers(headers)
-//                .body(resource);
-//    }
 @GetMapping("/play_video/{fileName}")
 public ResponseEntity<Resource> streamVideo(
         @PathVariable String fileName,

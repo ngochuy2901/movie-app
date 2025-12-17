@@ -216,6 +216,8 @@ fun VideoItem(
                     .crossfade(true)
                     .build(),
                 contentDescription = null,
+                placeholder = painterResource(R.drawable.icon_person),
+                error = painterResource(R.drawable.icon_person),
                 modifier = Modifier
                     .size(42.dp)
                     .clip(CircleShape)

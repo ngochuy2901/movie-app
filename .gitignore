@@ -31,6 +31,12 @@ build/
 *.project
 *.settings/
 
+# Media files
+*.mp4
+*.webm
+*.jpg
+*.png
+
 ####################
 # Common
 ####################

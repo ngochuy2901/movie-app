@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 class HomeViewModel : ViewModel() {
     //repository
@@ -38,17 +39,19 @@ class HomeViewModel : ViewModel() {
                 Log.d("HomeViewModel", "✅ Received ${_videos.value.size} videos from API")
                 //get list avatar url of authors
                 val userIds = _videos.value.map { it.userId }.distinct()
-//                val authorsAvatar = userIds.associateWith { id ->
-//                    userRepository.getUserInfoByUserId(id).imgUrl
-//                }
-                val authorsAvatar = userIds
-                    .map { id ->
+                val authorsAvatar = supervisorScope {
+                    userIds.map { id ->
                         async {
-                            id to (userRepository.getUserInfoByUserId(id).imgUrl ?: "")
+                            try {
+                                id to (userRepository.getUserInfoByUserId(id).imgUrl ?: "")
+                            } catch (e: Exception) {
+                                Log.e("HomeViewModel", "❌ Failed to load avatar for user $id", e)
+                                id to "" // fallback avatar
+                            }
                         }
-                    }
-                    .awaitAll()
-                    .toMap()
+                    }.awaitAll().toMap()
+                }
+
                 _urlAvatarOfAuthor.value = authorsAvatar
 
             } catch (e: Exception) {

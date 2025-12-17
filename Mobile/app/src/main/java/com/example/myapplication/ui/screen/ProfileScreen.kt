@@ -170,7 +170,7 @@ fun UserPlaylistPreview() {
 
 @Composable
 fun UserInformation(userDto: UserDto, navHostController: NavHostController) {
-    val imgUrlHeadPoint = ConfigLoader.get(LocalContext.current, "IMG_URL_HEAD_POINT")
+    val imgUrlHeadPoint = ConfigLoader.get(LocalContext.current, "IMG_URL_PUBLIC")
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -384,14 +384,16 @@ fun YouSectionItem(
 fun UserAvatar(url: String, modifier: Modifier) {
     val context = LocalContext.current
     val auth = Auth(context)
-    val token = auth.getToken()
+//    val token = auth.getToken()
     AsyncImage(
         model = ImageRequest.Builder(context)
             .data(url)
-            .addHeader("Authorization", "Bearer $token")   // 🌟 THÊM TOKEN VÀO HEADER
+//            .addHeader("Authorization", "Bearer $token")   // 🌟 THÊM TOKEN VÀO HEADER
             .crossfade(true)
             .build(),
         contentDescription = null,
+        placeholder = painterResource(R.drawable.icon_person),
+        error = painterResource(R.drawable.icon_person),
         modifier = modifier
     )
 }

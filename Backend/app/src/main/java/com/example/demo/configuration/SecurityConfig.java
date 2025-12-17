@@ -26,29 +26,25 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http,
-                                                   JwtAuthenticationFilter jwtAuthFilter) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthFilter) throws Exception {
 
-        http
-                .csrf(csrf -> csrf.disable()) // cách mới 6.x
+        http.csrf(csrf -> csrf.disable()) // cách mới 6.x
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/user/register", "/user/login", "/video/all_videos", "/video/play_video/*", "image/load_public_image/*").permitAll()
-                        .anyRequest().authenticated()
+                        .requestMatchers("/user/register", "/user/login", "/video/**", "image/**", "reaction/**", "comment/**", "image/**", "user/get_user_info/*", "user/get_user_info_by_userid/*")
+                        .permitAll().requestMatchers("/reaction/on_reaction_click", "comment/save_new_comment")
+                        .authenticated()
+                        .anyRequest()
+                        .authenticated()
 
-                )
-                .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // JWT không dùng session
-                )
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                ).sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS) // JWT không dùng session
+                ).addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
 
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
-        return username -> userRepository.findByUsername(username)
-                .map(MyUserDetails::new)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return username -> userRepository.findByUsername(username).map(MyUserDetails::new).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
 }
