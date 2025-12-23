@@ -106,7 +106,6 @@ fun ShortVideoScreen(
             onDismissRequest = { showSheet = false },
             dragHandle = { BottomSheetDefaults.DragHandle() }
         ) {
-            // Pass lists from ViewModel (they were already fetched)
             CommentBottom(
                 listComments = comments,
                 commentUsers = commentUsers,
@@ -278,7 +277,6 @@ fun UserActionBarPreview() {
 fun CommentBottom(
     listComments: List<Comment>,
     commentUsers: Map<Long, UserDto>,
-//    token: String,
     imgUrlImageForUserComment: String,
     viewModel: ShortVideoViewModel,
     videoId: Long,
@@ -320,7 +318,7 @@ fun CommentBottom(
                         contentDescription = null,
                         placeholder = painterResource(R.drawable.icon_person),
                         error = painterResource(R.drawable.icon_person),
-                        modifier = Modifier.clip(CircleShape)
+                        modifier = Modifier.clip(CircleShape).size(40.dp)
                     )
                     Log.d("Test imgUrl comment is null?", user?.imgUrl?: "Error")
                     Log.d("Test user comment is null?", user.toString())

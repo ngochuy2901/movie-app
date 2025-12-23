@@ -54,6 +54,7 @@ import coil.request.ImageRequest
 import com.example.myapplication.R
 import com.example.myapplication.auth.Auth
 import com.example.myapplication.data.model.Video
+import com.example.myapplication.data.model.VideoData.videoList
 import com.example.myapplication.utils.ConfigLoader
 import com.example.myapplication.viewmodel.HomeViewModel
 
@@ -310,105 +311,3 @@ fun ListVideoPreview() {
     )
 }
 
-val videoList = listOf(
-    Video(
-        id = 1,
-        userId = 1,
-        title = "Hướng dẫn làm app xem video bằng Kotlin",
-        description = "Video hướng dẫn chi tiết cách làm app xem video như YouTube.",
-        url = "huong-dan-app-xem-video",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 2,
-        userId = 1,
-        title = "Top 10 video hot nhất tuần",
-        description = "Tổng hợp những video nổi bật được xem nhiều nhất trong tuần này.",
-        url = "top-10-video-hot-nhat-tuan",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 3,
-        userId = 1,
-        title = "Cách tích hợp Firebase Storage vào app",
-        description = "Hướng dẫn upload và phát video từ Firebase Storage.",
-        url = "tich-hop-firebase-storage",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 4,
-        userId = 1,
-        title = "Làm UI giống YouTube bằng Jetpack Compose",
-        description = "Xây dựng giao diện YouTube hiện đại chỉ với vài dòng code.",
-        url = "ui-giong-youtube-compose",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 5,
-        userId = 1,
-        title = "Phát video từ Google Drive",
-        description = "Hướng dẫn lấy video từ Google Drive và phát trong Android.",
-        url = "phat-video-tu-google-drive",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 6,
-        userId = 1,
-        title = "Sử dụng ExoPlayer trong Android",
-        description = "Cách tích hợp ExoPlayer để phát video mượt mà, hỗ trợ nhiều định dạng.",
-        url = "su-dung-exoplayer",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 7,
-        userId = 1,
-        title = "Tối ưu tốc độ load video",
-        description = "Các mẹo giúp video load nhanh và không bị giật lag.",
-        url = "toi-uu-toc-do-load-video",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 8,
-        userId = 1,
-        title = "Hiển thị thumbnail video bằng Glide",
-        description = "Dùng Glide để hiển thị ảnh đại diện video nhanh chóng.",
-        url = "thumbnail-video-glide",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 9,
-        userId = 1,
-        title = "Tạo danh sách phát (Playlist)",
-        description = "Cách nhóm video thành playlist giống YouTube.",
-        url = "tao-playlist-video",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    ),
-    Video(
-        id = 10,
-        userId = 1,
-        title = "Xử lý khi video bị lỗi mạng",
-        description = "Hiển thị thông báo hoặc retry khi video không tải được.",
-        url = "xu-ly-loi-video",
-        urlThumbnail = "huong-dan-lam-app-xem-video",
-        status = "published",
-        visibility = "public",
-    )
-)

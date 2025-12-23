@@ -53,7 +53,9 @@ import coil.request.ImageRequest
 import com.example.myapplication.R
 import com.example.myapplication.auth.Auth
 import com.example.myapplication.data.dto.UserDto
+import com.example.myapplication.data.model.UserDtoData.userDto
 import com.example.myapplication.data.model.UserPlaylist
+import com.example.myapplication.data.model.UserPlaylistData.samplePlaylists
 import com.example.myapplication.utils.ConfigLoader
 import com.example.myapplication.viewmodel.ProfileViewModel
 
@@ -410,89 +412,3 @@ fun YouSectionPreview() {
     YouSection(samplePlaylists)
 }
 
-val userDto = UserDto(
-    id = 1L, // có thể bỏ nếu muốn để null
-    fullName = "Nguyễn Văn A",
-    email = "nguyenvana@example.com",
-    phoneNumber = "0123456789",
-    username = "nguyenvana",
-    imgUrl = "https://example.com/avatar.jpg", // có thể bỏ = null
-    gender = "Male",
-    dateOfBirth = "1990-01-01"
-)
-val samplePlaylists = listOf(
-    UserPlaylist(
-        1,
-        1,
-        "Video đã thích",
-        "Danh sách video đã thích của người dùng",
-        "PRIVATE",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(
-        2,
-        1,
-        "Lập trình Android",
-        "Tổng hợp video hướng dẫn Android Kotlin",
-        "PUBLIC",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(
-        3,
-        1,
-        "Nhạc Lofi",
-        "Playlist nhạc chill nghe khi làm việc",
-        "PUBLIC",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(
-        4,
-        1,
-        "Học Spring Boot",
-        "Video backend, Spring Security, JPA",
-        "UNLISTED",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(5, 1,"Xem sau", "Videos lưu để xem sau", "PRIVATE", System.currentTimeMillis()),
-
-    UserPlaylist(
-        6,
-        1,
-        "Công thức nấu ăn",
-        "Các món ăn dễ làm tại nhà",
-        "PUBLIC",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(
-        7,
-        1,
-        "Travel Vlog",
-        "Tổng hợp các video du lịch yêu thích",
-        "PUBLIC",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(
-        8,
-        1,
-        "Nhạc Gym",
-        "Playlist nghe khi tập luyện",
-        "PUBLIC",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(
-        9,
-        1,
-        "Học SEO",
-        "Các video hướng dẫn SEO & Marketing",
-        "UNLISTED",
-        System.currentTimeMillis()
-    ),
-    UserPlaylist(
-        10,
-        1,
-        "Video đã thích",
-        "Danh sách video đã thích",
-        "PRIVATE",
-        System.currentTimeMillis()
-    )
-)
