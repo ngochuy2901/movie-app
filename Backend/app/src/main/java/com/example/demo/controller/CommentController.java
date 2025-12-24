@@ -37,5 +37,4 @@ public class CommentController {
     public ResponseEntity<Long> countCommentByVideoId(@PathVariable Long videoId) {
         return ResponseEntity.ok(commentService.countCommentByVideoId(videoId));
     }
-
 }

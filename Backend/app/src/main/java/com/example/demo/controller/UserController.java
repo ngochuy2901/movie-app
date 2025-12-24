@@ -34,7 +34,6 @@ public class UserController {
     private final ImageService imageService;
     private final JwtService jwtService;
 
-
     @PostMapping("register")
     public ResponseEntity<RegisterResponse> register(@RequestBody User user) {
         return ResponseEntity.ok(userService.register(user));
@@ -97,7 +96,4 @@ public class UserController {
             ));
         }
     }
-
-
-
 }

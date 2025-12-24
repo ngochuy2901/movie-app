@@ -6,6 +6,7 @@ import com.example.demo.security.MyUserDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -17,9 +18,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 public class SecurityConfig {
 
-//    private final JwtAuthenticationFilter jwtAuthFilter;
-
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -28,7 +26,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthFilter) throws Exception {
 
-        http.csrf(csrf -> csrf.disable()) // cách mới 6.x
+        http.csrf(AbstractHttpConfigurer::disable) // disable csrf
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/user/register", "/user/login", "/video/**", "image/**", "reaction/**", "comment/**", "image/**", "user/get_user_info/*", "user/get_user_info_by_userid/*")
                         .permitAll().requestMatchers("/reaction/on_reaction_click", "comment/save_new_comment")

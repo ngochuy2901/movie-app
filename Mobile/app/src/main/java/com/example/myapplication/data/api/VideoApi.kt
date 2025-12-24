@@ -9,6 +9,7 @@ import retrofit2.http.GET
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface VideoApi {
     @GET("video/all_videos")
@@ -23,4 +24,8 @@ interface VideoApi {
         @Part("description") description: RequestBody
     ): Response<Map<String, String>>
 
+    @GET("video/search")
+    suspend fun searchVideo(
+        @Query("keyword") keyword: String
+    ): List<Video>
 }

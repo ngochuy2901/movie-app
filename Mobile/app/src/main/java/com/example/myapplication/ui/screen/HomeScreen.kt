@@ -133,7 +133,7 @@ fun HomeHeader(navHostController: NavHostController) {
             }
 
 
-            IconButton(onClick = {}) {
+            IconButton(onClick = {navHostController.navigate("search_video")}) {
                 Icon(
                     painterResource(R.drawable.icon_search),
                     contentDescription = "Search",

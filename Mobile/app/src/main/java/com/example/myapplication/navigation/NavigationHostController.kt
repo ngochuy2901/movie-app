@@ -17,6 +17,7 @@ import com.example.myapplication.ui.screen.NotificationScreen
 import com.example.myapplication.ui.screen.PlayVideoScreen
 import com.example.myapplication.ui.screen.ProfileScreen
 import com.example.myapplication.ui.screen.RegisterScreen
+import com.example.myapplication.ui.screen.SearchVideoScreen
 import com.example.myapplication.ui.screen.SettingScreen
 import com.example.myapplication.ui.screen.ShortVideoScreen
 import com.example.myapplication.ui.screen.SplashScreen
@@ -45,6 +46,7 @@ fun NavHostController(modifier: Modifier, navController: NavHostController) {
         composable("upload_video") { UploadVideoScreen(navHostController = navController) }
         composable ("setting") { SettingScreen(navController) }
         composable ("notification") { NotificationScreen(navController) }
+        composable ("search_video") { SearchVideoScreen(navController) }
         composable("playvideo/{videoJson}") { backStackEntry ->
             val videoJson = backStackEntry.arguments?.getString("videoJson")
             val video = Json.decodeFromString<Video>(Uri.decode(videoJson ?: ""))

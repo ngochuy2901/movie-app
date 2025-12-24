@@ -13,4 +13,6 @@ class VideoRepository {
         title: RequestBody,
         description: RequestBody
     ) = RetrofitInstance.videoApi.uploadVideo(file, thumbnailFile, title, description)
+
+    suspend fun liveSearchVideoByTitle(keyword: String) = RetrofitInstance.videoApi.searchVideo(keyword)
 }
